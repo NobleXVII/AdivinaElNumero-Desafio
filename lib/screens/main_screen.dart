@@ -38,6 +38,10 @@ class MainScreen extends StatelessWidget {
                       decoration: const InputDecoration(
                         hintText: 'Su número...',
                       ),
+                      onFieldSubmitted: (String value) {
+                        context.read<GlobalState>().intento(int.parse(value));
+                        _valor.clear();
+                      },
                     ),
                   ),
                 ),
@@ -48,16 +52,13 @@ class MainScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text('Intentos:'),
-                      Text('5'),
+                      Text('${context.watch<GlobalState>().intentos}'),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              height: 16.0,
-            ),
-
+            const SizedBox(height: 16.0),
             Container(
               color: Colors.grey,
               height: 175.0,
@@ -72,6 +73,14 @@ class MainScreen extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8.0),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: mayoresQue.length,
+                            itemBuilder: (context, index) {
+                              return Text('${mayoresQue[index]}');
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -84,6 +93,14 @@ class MainScreen extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8.0),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: menoresQue.length,
+                            itemBuilder: (context, index) {
+                              return Text('${menoresQue[index]}');
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -96,23 +113,47 @@ class MainScreen extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8.0),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: historial.length,
+                            itemBuilder: (context, index) {
+                              return Text(
+                                '${historial[index]['value']}',
+                                style: TextStyle(
+                                    color: (historial[index]['win']) ? Colors.green : Colors.red
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-                height: 10.0
-            ),
+            SizedBox(height: 10.0,),
 
             Slider(
-                value: 0,
+                value: double.parse(context.watch<GlobalState>().dificultad.toString()),
                 divisions: 3,
                 max: 3,
-                label: 'Numero',
+                label: context.watch<GlobalState>().dificultad.toString(),
                 onChanged: (double value) {
-                  print(value);
+                  switch (value) {
+                    case 0:
+                      context.read<GlobalState>().esFacil();
+                      break;
+                    case 1:
+                      context.read<GlobalState>().esMedio();
+                      break;
+                    case 2:
+                      context.read<GlobalState>().esDificil();
+                      break;
+                    case 3:
+                      context.read<GlobalState>().esExtremo();
+                      break;
+                  }
                 }
             )
           ],
