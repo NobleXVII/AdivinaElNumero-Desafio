@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:adivina_el_numero/providers/providers.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    //TODO: Es solo por test, borrar al terminar pruebas
+    print(context.watch<GlobalState>().numeritoMagico);
+
     TextEditingController _valor = new TextEditingController();
+
+    List mayoresQue = context.watch<GlobalState>().mayorQue;
+    List menoresQue = context.watch<GlobalState>().menorQue;
+    List historial = context.watch<GlobalState>().historial;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
