@@ -63,4 +63,40 @@ class GlobalState with ChangeNotifier, DiagnosticableTreeMixin {
     _numeritoMagico = rand.nextInt(1000)+1;
     notifyListeners();
   }
+
+  void intento(int valor) {
+    if (valor == _numeritoMagico) {
+      _status = true;
+      afterWinOrLose();
+      _historial.add({'value': valor, 'win': true});
+    } else {
+      (valor > _numeritoMagico)
+          ? _menorQue.add(valor)
+          : _mayorQue.add(valor);
+      _intentos--;
+      if (_intentos == 0) {
+        _historial.add({'value': valor, 'win': false});
+        afterWinOrLose();
+      }
+    }
+    notifyListeners();
+  }
+
+  void afterWinOrLose() {
+    switch (_dificultad) {
+      case 0:
+        esFacil();
+        break;
+      case 1:
+        esMedio();
+        break;
+      case 2:
+        esDificil();
+        break;
+      case 3:
+        esExtremo();
+        break;
+    }
+  }
+
 }
