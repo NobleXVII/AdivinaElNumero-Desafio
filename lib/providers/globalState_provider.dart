@@ -75,7 +75,7 @@ class GlobalState with ChangeNotifier, DiagnosticableTreeMixin {
           : _mayorQue.add(valor);
       _intentos--;
       if (_intentos == 0) {
-        _historial.add({'value': valor, 'win': false});
+        _historial.add({'value': _numeritoMagico, 'win': false});
         afterWinOrLose();
       }
     }

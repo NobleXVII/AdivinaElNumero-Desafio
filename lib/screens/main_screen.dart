@@ -58,7 +58,7 @@ class MainScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Container(
-              color: Colors.grey,
+              color: Colors.grey[300],
               height: 175.0,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,10 @@ class MainScreen extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: mayoresQue.length,
                             itemBuilder: (context, index) {
-                              return Text('${mayoresQue[index]}');
+                              return Text(
+                                  '${mayoresQue[index]}',
+                                textAlign: TextAlign.center,
+                              );
                             },
                           ),
                         ),
@@ -94,7 +97,10 @@ class MainScreen extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: menoresQue.length,
                             itemBuilder: (context, index) {
-                              return Text('${menoresQue[index]}');
+                              return Text(
+                                  '${menoresQue[index]}',
+                                textAlign: TextAlign.center,
+                              );
                             },
                           ),
                         ),
@@ -118,6 +124,7 @@ class MainScreen extends StatelessWidget {
                                 style: TextStyle(
                                     color: (historial[index]['win']) ? Colors.green : Colors.red
                                 ),
+                                textAlign: TextAlign.center,
                               );
                             },
                           ),
