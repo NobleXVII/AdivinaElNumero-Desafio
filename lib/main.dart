@@ -10,7 +10,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => GlobalState())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Adivina el numero',
       debugShowCheckedModeBanner: false,
       home: MainScreen(),

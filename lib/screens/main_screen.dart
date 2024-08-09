@@ -7,8 +7,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Es solo por test, borrar al terminar pruebas
-    print(context.watch<GlobalState>().numeritoMagico);
 
     TextEditingController _valor = new TextEditingController();
 
@@ -84,7 +82,6 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 6.0),
                   Expanded(
                     child: Column(
                       children: [
@@ -104,7 +101,6 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 6.0),
                   Expanded(
                     child: Column(
                       children: [
@@ -132,7 +128,7 @@ class MainScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
 
             Slider(
                 value: double.parse(context.watch<GlobalState>().dificultad.toString()),
