@@ -49,3 +49,7 @@ build/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Extras
+.metadata
+ios/Runner.xcworkspace

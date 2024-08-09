@@ -1,0 +1,1 @@
+export 'package:adivina_el_numero/screens/main_screen.dart';
